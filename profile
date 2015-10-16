@@ -24,3 +24,6 @@ export PATH
 # nginx
 PATH=$PATH:/usr/local/nginx/sbin
 export PATH
+# nodejs
+PATH=$PATH:/usr/local/node/bin
+export PATH
