@@ -79,6 +79,7 @@ mkdir -p /etc/nginx/auth_pwd
 htpasswd -c -b /etc/nginx/auth_pwd/kibana.passwd user_name user_pwd
 #更改kibana运行端口
 vim /etc/kibana/kibana.yml
+server.host: "localhost"
 server.port: 5602
 #配置nginx
 server {
