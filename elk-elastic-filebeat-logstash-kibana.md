@@ -68,3 +68,29 @@ systemctl start logstash
 // logstash -t -f /etc/logstash/conf.d/nginx_access.conf
 
 systemctl start filebeat
+
+#### kibana设置账号密码登录
+```
+#安装htpasswd工具
+yum provides htpasswd # 返回httpd-tools
+yum install httpd-tools
+#生成密码
+mkdir -p /etc/nginx/auth_pwd
+htpasswd -c -b /etc/nginx/auth_pwd/kibana.passwd user_name user_pwd
+#更改kibana运行端口
+vim /etc/kibana/kibana.yml
+server.port: 5602
+#配置nginx
+server {
+    listen 5601;
+    auth_basic "Kibana Auth";
+    auth_basic_user_file /etc/nginx/auth_pwd/kibana.passwd;
+
+    location / {
+        proxy_pass http://127.0.0.1:5602;
+        proxy_redirect off;
+    }
+}
+systemctl restart kibana
+systemctl restart nginx
+```
