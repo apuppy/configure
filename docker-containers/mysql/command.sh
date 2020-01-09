@@ -1,1 +1,1 @@
-docker run --name some-mysql -p 3306:3306 -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/datadir:/var/lib/mysql -e mysql_root_password=123456 -d mysql:5.7
+docker run -p 3306:3306 --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 -e LANG=C.UTF-8 -e TZ='Asia/Shanghai' -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/datadir:/var/lib/mysql -d mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
