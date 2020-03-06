@@ -8,7 +8,7 @@ import time
 
 import requests
 
-ELASTIC_HOST = "http://192.168.33.22:9200"
+ELASTIC_HOST = "http://127.0.0.1:9200"
 ELASTIC_USER = "elastic"
 ELASTIC_PASSWORD = "elastic_admin"
 
@@ -43,6 +43,11 @@ def delete_expired_index(index):
         return True
     else:
         return False
+
+
+# get current datetime
+def get_now_datetime():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 # show confirm dailog in interactive mode in command line
@@ -120,8 +125,10 @@ def main():
             if not confirmed: continue
         deleted = delete_expired_index(index)
         if deleted:
-            print("Index deleted : [ " + index['idx_name'] + " ] [" + index['idx_create_datetime'] + "] [" + index[
-                'storage_size'] + "]")
+            now_datetime = get_now_datetime()
+            print("Index deleted at {0}: [ {1} ] [{2}] [{3}]".format(now_datetime, index['idx_name'],
+                                                                     index['idx_create_datetime'],
+                                                                     index['storage_size']))
 
 
 """ ------------ call entry point ------------ """
