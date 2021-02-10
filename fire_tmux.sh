@@ -22,8 +22,8 @@ then
 
 
     # setup Writing window
-    tmux new-window -t $SESSION:2 -n 'working_directory'
-    tmux send-keys -t 'working_directory' C-m 'cd ~/code/; clear' C-m
+    tmux new-window -t $SESSION:2 -n 'work_dir'
+    tmux send-keys -t 'work_dir' C-m 'cd ~/code/; clear' C-m
     tmux splitw -v -p 50
 
     # Setup an additional shell
