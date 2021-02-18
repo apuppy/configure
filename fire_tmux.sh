@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set Session Name
-SESSION="calm_n_brave"
+SESSION="c_n_b"
 SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
 docker_mysql_dev1='docker exec -it some-mysql mysql -h192.168.1.17 -uroot -pxthk123456 --auto-rehash'
 
