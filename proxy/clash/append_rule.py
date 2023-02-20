@@ -37,9 +37,9 @@ def modify_configuration_file(custom_rule, pattern):
     print(new_content)
 
     # open the file for writing and write the new content
-    # with open(conf_file, "w") as f:
-    #     f.write(new_content)
-    #     pass
+    with open(conf_file, "w") as f:
+        f.write(new_content)
+        pass
 
 
 custom_rule = read_custom_rule(custom_rule_file)
