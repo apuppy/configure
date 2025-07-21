@@ -1,0 +1,25 @@
+FROM ubuntu:22.04
+
+WORKDIR /root
+
+RUN sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+
+RUN apt-get update
+
+RUN apt-get install -y wget gawk bsdutils bsdextrautils zsh git curl vim tldr
+
+# translate-shell
+RUN wget -O /usr/local/bin/trans git.io/trans && \
+    chmod +x /usr/local/bin/trans
+
+# oh-my-zsh与插件
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+# 配置 zsh 插件
+RUN sed -i 's/plugins=(/plugins=(zsh-autosuggestions zsh-syntax-highlighting /' /root/.zshrc && chsh -s /bin/zsh
+
+RUN mkdir -p /root/.local/share/tldr && tldr -u
+
+CMD ["/bin/zsh"]
