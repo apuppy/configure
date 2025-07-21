@@ -3,11 +3,11 @@ docker build --progress=plain -t my-img -f toolkit-Dockerfile .
 ```
 
 ```shell
-docker run -dit --name my-box my-img /bin/zsh
+docker run -dit --name my-box -e LANG=C.UTF-8 my-img /bin/zsh
 ```
 
 ```shell
-docker exec -it my-box zsh
+docker exec -it -e LANG=C.UTF-8 my-box zsh
 ```
 
 ```shell
