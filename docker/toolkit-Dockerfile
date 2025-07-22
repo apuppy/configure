@@ -8,6 +8,8 @@ RUN apt-get update
 
 RUN apt-get install -y wget gawk bsdutils bsdextrautils zsh git curl vim tmux tldr dnsutils iputils-ping
 
+ENV LANG=C.UTF-8
+
 # translate-shell
 RUN wget -O /usr/local/bin/trans git.io/trans && \
     chmod +x /usr/local/bin/trans
